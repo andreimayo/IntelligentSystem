@@ -91,7 +91,7 @@
         {#if chatHistory.length === 0}
           <div class="placeholder-container">
             <div class="placeholder-icon">💬</div>
-            <p class="placeholder">Ask about Myself (name, age, hobbies, or favorite foods!)</p>
+            <p class="placeholder">Ask about Myself (name, age, birth date, hobbies, or favorite foods!)</p>
           </div>
         {:else}
           {#each chatHistory as message, i}
@@ -147,15 +147,13 @@
 <style>
   /* Variables for theming */
   :root {
-    --primary: #6d28d9;
-    --primary-light: #8b5cf6;
-    --primary-dark: #5b21b6;
-    --secondary: #0d9488;
-    --secondary-light: #14b8a6;
+    --primary: #636364;
+    --primary-black: #050505;
+    --primary-dark: #424142;
     --accent: #f0fdfa;
     --text: #1e293b;
     --text-light: #64748b;
-    --background: #f8fafc;
+    --background: #aaa8a8;
     --card-bg: #ffffff;
     --border: #e2e8f0;
     --error: #ef4444;
@@ -196,7 +194,7 @@
   /* Card header */
   .card-header {
     padding: 1.5rem;
-    background: linear-gradient(to right, var(--primary), var(--primary-dark));
+    background: linear-gradient(to right, var(--primary), var(--primary));
     color: white;
     position: relative;
     display: flex;
@@ -301,12 +299,12 @@
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
-    background-color: var(--primary-light);
+    background-color: var(--primary-black);
     color: white;
   }
   
   .user .message-avatar {
-    background-color: var(--secondary);
+    background-color: var(--card-bg);
   }
   
   .message-content {
@@ -318,8 +316,8 @@
   }
   
   .user .message-content {
-    background-color: var(--primary);
-    color: white;
+    background-color: var(--background);
+    color: black;
   }
   
   .bot .message-content::before {
@@ -338,7 +336,8 @@
     right: -8px;
     top: 14px;
     border-top: 8px solid transparent;
-    border-left: 8px solid var(--primary);
+    border-left: 8px solid var(--background
+    );
     border-bottom: 8px solid transparent;
   }
   
@@ -379,7 +378,7 @@
   .message-input {
     flex: 1;
     padding: 0.875rem 1.25rem;
-    border: 1px solid var(--border);
+    border: 1px solid var(--primary-black);
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.2s ease;
@@ -388,8 +387,8 @@
   
   .message-input:focus {
     outline: none;
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+    border-color: var(--primary-black);
+    box-shadow: 0 0 0 3px rgba(7, 7, 7, 0.2);
   }
   
   .send-button {

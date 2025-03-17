@@ -22,6 +22,8 @@ export const POST: RequestHandler = async ({ request }) => {
       age: 21,
       hobbies: ["basketball", "dota", "mobile legends"],
       likes: ["pizza", "fries", "burger"],
+      birthday: ["march 24"],
+      response: ["Hi, Im your AI Assistant. Want to know something about you?"],
       userType: "Regular User"
     };
 
@@ -49,12 +51,16 @@ export const POST: RequestHandler = async ({ request }) => {
                         - Age: ${user.age}
                         - Hobbies: ${user.hobbies.join(', ')}
                         - Favorite foods: ${user.likes.join(', ')}
+                        - Birthday: ${user.birthday}
+                        - Response: ${user.response}
                         
                         Only provide the specific information that was asked for. Do not provide additional information.
                         For example, if asked "What's my name?", only respond with "Your name is Andrei Mayo."
                         If asked "What's my age?", only respond with "You are 21 years old."
                         If asked about hobbies, only mention the hobbies.
-                        If asked about food, only mention the favorite foods.`
+                        If asked about food, only mention the favorite foods.
+                        If said "Hi", only respond "Hi, Im your AI Assistant. Want to know something about you?"
+                        If asked "When is your birhtday?", only respond "Your birthday is march 24, 2003."`
             },
             {
               role: "user",
@@ -143,6 +149,25 @@ function getDirectResponse(message: string, user: any): string | null {
     lowerMessage.includes("what is my favorite food")
   ) {
     return `Your favorite foods are ${user.likes.join(', ')}.`;
+  }
+
+   if (
+    lowerMessage.includes("when is my birthday") || 
+    lowerMessage.includes("birthdate") ||
+    lowerMessage.includes("my birthday")
+  ) {
+    return `Your birthday is on ${user.birthday}.`;
+  }
+
+  if (
+    lowerMessage.includes("HI") || 
+    lowerMessage.includes("Hello") ||
+    lowerMessage.includes("hello") ||
+    lowerMessage.includes("hi") ||
+    lowerMessage.includes("hey") ||
+    lowerMessage.includes("Hey")
+  ) {
+    return `${user.response}`;
   }
   
  
